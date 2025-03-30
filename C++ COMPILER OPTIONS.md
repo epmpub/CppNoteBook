@@ -1,6 +1,7 @@
-# C/C++ COMPILER OPTIONS
+# C/C++ compiler options
 
 ## -OPTIMIZATION-
+
 ```bash
 
 /O1 maximum optimizations (favor space)
@@ -18,7 +19,8 @@
     ATOM - Intel(R) Atom(TM) processors
 ```
 
-##  -CODE GENERATION-
+## -CODE GENERATION-
+
 ```bash
 /Gu[-] ensure distinct functions have distinct addresses
 /Gw[-] separate global variables for linker
