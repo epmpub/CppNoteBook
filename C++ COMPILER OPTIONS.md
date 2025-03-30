@@ -1,12 +1,10 @@
-                          
-
-#  C/C++ COMPILER OPTIONS
+# C/C++ COMPILER OPTIONS
 
 ## -OPTIMIZATION-
 
 /O1 maximum optimizations (favor space)
 /O2 maximum optimizations (favor speed)
-/Ob<n> inline expansion (default n=0)
+/Ob inline expansion (default n=0)
 /Od disable optimizations (default)
 /Og enable global optimization
 /Oi[-] enable intrinsic functions
@@ -14,9 +12,10 @@
 /Ot favor code speed
 /Ox optimizations (favor speed)
 /Oy[-] enable frame pointer omission 
-/favor:<blend|ATOM> select processor to optimize for, one of:
+/favor: select processor to optimize for, one of:
     blend - a combination of optimizations for several different x86 processors
-    ATOM - Intel(R) Atom(TM) processors                 
+    ATOM - Intel(R) Atom(TM) processors
+
 ##  -CODE GENERATION-
 
 /Gu[-] ensure distinct functions have distinct addresses
@@ -91,15 +90,15 @@
 /Qspectre-load-cf Enable spectre mitigations for all control-flow instructions which load memory
 /fpcvt:<IA|BC> FP to unsigned integer conversion compatibility
    IA - results compatible with VCVTTSD2USI instruction
-   BC - results compatible with VS2017 and earlier compiler       
+   BC - results compatible with VS2017 and earlier compiler
 
-##   -OUTPUT FILES-
+## -OUTPUT FILES-
 
 /Fa[file] name assembly listing file
 /FA[scu] configure assembly listing
-/Fd[file] name .PDB file               
+/Fd[file] name .PDB file
 /Fe<file> name executable file
-/Fm[file] name map file                 
+/Fm[file] name map file
 /Fo<file> name object file
 /Fp<file> name precompiled header file  
 /Fr[file] name source browser file
