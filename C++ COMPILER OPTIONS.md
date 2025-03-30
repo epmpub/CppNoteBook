@@ -1,6 +1,7 @@
 # C/C++ COMPILER OPTIONS
 
 ## -OPTIMIZATION-
+```bash
 
 /O1 maximum optimizations (favor space)
 /O2 maximum optimizations (favor speed)
@@ -15,6 +16,7 @@
 /favor: select processor to optimize for, one of:
     blend - a combination of optimizations for several different x86 processors
     ATOM - Intel(R) Atom(TM) processors
+```
 
 ##  -CODE GENERATION-
 
