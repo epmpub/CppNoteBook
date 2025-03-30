@@ -19,7 +19,7 @@
 ```
 
 ##  -CODE GENERATION-
-
+```bash
 /Gu[-] ensure distinct functions have distinct addresses
 /Gw[-] separate global variables for linker
 /GF enable read-only string pooling
@@ -93,8 +93,10 @@
 /fpcvt:<IA|BC> FP to unsigned integer conversion compatibility
    IA - results compatible with VCVTTSD2USI instruction
    BC - results compatible with VS2017 and earlier compiler
+```
 
 ## -OUTPUT FILES-
+```bash
 
 /Fa[file] name assembly listing file
 /FA[scu] configure assembly listing
@@ -115,8 +117,10 @@
 /Fi: <file> name preprocessed file      
 /Ft<dir> location of the header files generated for #import
 /doc[file] process XML documentation comments and optionally name the .xdc file
+```
 
 ##    -PREPROCESSOR-
+```bash
 
 /AI<dir> add to assembly search path    
 /FU<file> import .NET assembly/module
@@ -293,3 +297,4 @@
 /external:templates[-]  - evaluate warning level across template instantiation chain
 /sdl enable additional security features and warnings
 /options:strict unrecognized compiler options are an error
+```
