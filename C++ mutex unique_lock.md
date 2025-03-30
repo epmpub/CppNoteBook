@@ -1,4 +1,4 @@
-mutex unique_lock
+# mutex unique_lock
 
 code as flow:
 
@@ -45,4 +45,3 @@ int main()
                  "acc2: " << acc2.num_things << '\n';
 }
 ```
-

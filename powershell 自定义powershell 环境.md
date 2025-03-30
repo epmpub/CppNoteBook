@@ -15,7 +15,6 @@ PowerShell 配置文件是在 PowerShell 启动时运行的脚本。 可以使�
 若要在 Windows 中运行脚本，至少需要将 PowerShell 执行策略设置为 `RemoteSigned`。 执行策略不适用于 macOS 和 Linux。 有关详细信息，请参阅 [about_Execution_Policy](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies)。
 
 
-
 ## $PROFILE 变量
 
 `$PROFILE` 自动变量存储当前会话中可用的 PowerShell 配置文件的路径。

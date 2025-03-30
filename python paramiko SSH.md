@@ -1,9 +1,5 @@
 # paramiko SSH
 
-
-
-sample code:
-
 ```python
 #!/usr/bin/python
 
@@ -78,14 +74,7 @@ def main(argv=None):
 if __name__ == "__main__":
     main(sys.argv[ 1: ])
 ```
-
-
-
-
-
 OK：
-
-
 
 ```python
 # -*- coding: utf-8 -*-

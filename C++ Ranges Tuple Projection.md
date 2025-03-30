@@ -1,10 +1,8 @@
- C++ Ranges 中 **元组投影**（Tuple Projections）
-
----
+# C++ Ranges 中 **元组投影**（Tuple Projections）
 
 以下是关于 C++ Ranges 中 **元组投影**（Tuple Projections）的示例代码，涵盖 `keys`、`values` 和 `elements` 的用法。这些投影操作允许您从元组或类元组对象（如 `std::pair`）中提取特定成员，常用于简化范围操作。
 
-### **示例代码**
+## **示例代码**
 
 ```cpp
 #include <iostream>
@@ -86,6 +84,7 @@ int main() {
 ---
 
 ### **关键点解析**
+
 #### 1. **`elements<N>` 投影**
 - **作用**：从元组或结构化绑定对象中提取第 `N` 个元素。
 - **示例**：
