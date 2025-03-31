@@ -121,10 +121,12 @@ These posts are short-form C++ information posts.
     - [LinkedIn](https://www.linkedin.com/posts/simontoth_cpp-cplusplus-coding-activity-7195105375962943488-Dv3Z), [Mastodon](https://hachyderm.io/@simontoth/112423521635559580)
     - [Medium](https://medium.com/@simontoth/daily-bit-e-of-c-std-all-of-std-any-of-std-none-of-38108d6e635b), [Substack](https://simontoth.substack.com/p/daily-bite-of-c-stdall_of-stdany_of-241?r=1g4l8a)
     - [Compiler Explorer](https://compiler-explorer.com/z/v8457oW77)
-- `46.` `std::strong_ordering`, `std::weak_ordering`, `std::partial_ordering`
+- `46.` `std::strong_ordering`, `std::weak_ordering`, `std::partial_ordering` 
+    - TODO
     - [LinkedIn](https://www.linkedin.com/posts/simontoth_cpp-cplusplus-coding-activity-7200178822774702080-xG5j), [Mastodon](https://hachyderm.io/@simontoth/112502794338959036)
     - [Medium](https://medium.com/@simontoth/daily-bit-e-of-c-std-strong-ordering-std-weak-ordering-std-partial-ordering-4ba24a8c9be0), [Substack](https://simontoth.substack.com/p/daily-bite-of-c-stdstrong_ordering-5b3)
     - [Compiler Explorer](https://compiler-explorer.com/z/drqnqzKxa)
+    
 - `47.` `std::bitset`
     - [LinkedIn](https://www.linkedin.com/posts/simontoth_cpp-cplusplus-coding-activity-7201265981019631616-cXz3), [Mastodon](https://hachyderm.io/@simontoth/112519780807668550)
     - [Medium](https://medium.com/@simontoth/daily-bit-e-of-c-std-bitset-cffe30f8d89e), [Substack](https://simontoth.substack.com/p/daily-bite-of-c-stdbitset-134)
@@ -161,7 +163,7 @@ These posts are short-form C++ information posts.
     - [LinkedIn](https://www.linkedin.com/posts/simontoth_cpp-cplusplus-coding-activity-7203802727640907776-WSDz), [Mastodon](https://hachyderm.io/@simontoth/112559417189787609)
     - [Medium](https://medium.com/@simontoth/daily-bit-e-of-c-std-for-each-fc430114d033), [Substack](https://simontoth.substack.com/p/daily-bite-of-c-stdfor_each-ce4)
     - [Compiler Explorer](https://compiler-explorer.com/z/EP7TnKev3)
-- `61.` Monostate pattern
+- `61.` Monostate pattern  {The Singleton alternative}
     - [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7037481759902441472), [Mastodon](https://hachyderm.io/@simontoth/109960652407194869)
     - [Medium](https://medium.com/@simontoth/daily-bit-e-of-c-monostate-pattern-f795bdd5b432), [Substack](https://simontoth.substack.com/p/daily-bite-of-c-monostate-pattern)
     - [Compiler Explorer](https://compiler-explorer.com/z/veE3vfo7P)
