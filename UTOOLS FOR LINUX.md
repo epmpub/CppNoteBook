@@ -1,15 +1,5 @@
 # UTOOLS.run 工具介绍
 
-![image-20250405144438719](C:\Users\sheng\AppData\Roaming\Typora\typora-user-images\image-20250405144438719.png)
-
-​												Linux平台
-
-
-
-![image-20250405144514835](C:\Users\sheng\AppData\Roaming\Typora\typora-user-images\image-20250405144514835.png)
-
-​											windows 平台
-
 ## 介绍
 
 1. **自动化操作**：脚本程序可以自动执行一系列操作，节省时间和精力。例如，在软件开发中，可使用脚本进行自动化的编译、测试和部署过程，减少人工操作的繁琐和错误。
