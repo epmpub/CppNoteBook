@@ -4,7 +4,7 @@ On top of the conditional explicit specifier, C++20 gave us another tool for bet
 
 Concepts can prevent or limit the scope of implicit conversions on the accepting side.
 
-![](D:\0.products\myBook\conceptsLibrary.png)
+![](conceptsLibrary.png)
 
 
 
