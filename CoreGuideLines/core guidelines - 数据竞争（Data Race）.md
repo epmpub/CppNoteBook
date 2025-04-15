@@ -3,7 +3,6 @@
 是的，这段代码存在潜在的 **数据竞争（Data Race）** 问题，主要源于多个线程对共享数据的非同步访问。以下是详细分析：
 
 
-
 ```C++
 void f(fstream& fs, regex pattern)
 {
