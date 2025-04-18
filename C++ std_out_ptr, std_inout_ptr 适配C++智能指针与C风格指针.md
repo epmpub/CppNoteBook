@@ -1,5 +1,11 @@
 # std::out_ptr, std::inout_ptr 适配C++智能指针与C风格指针
 
+// 注意要定义自己的删除器 ,用来回收资源;
+
+// 知道内存是如何分配的和应该如何释放;
+
+![](D:\0.products\myBook\std_out_ptr.png)
+
 
 
 ```c++
