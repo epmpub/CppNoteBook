@@ -61,6 +61,8 @@ int main() {
     // 创建随机数生成器
     std::random_device rd; // 真随机种子
     std::mt19937 gen(rd()); // 梅森扭转生成器
+    
+    //std::mt19937 gen(std::random_device{}()); // 上述写法的简写
 
     // 洗牌
     std::shuffle(vec.begin(), vec.end(), gen);

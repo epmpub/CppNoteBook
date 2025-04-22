@@ -12,7 +12,7 @@ int main() {
 
     // Order of invocation is guaranteed
     std::generate(data.begin(), data.end(),
-        [iota = 1] mutable {
+        [iota = 1]() mutable {
             return iota++;
         });
     // data == {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
