@@ -4,12 +4,9 @@
 #include <iostream>
 
 struct foo {
-   void operate() { // Fixed the method signature
-       std::cout << "operate()" << std::endl;
-   }
 
    void operator()()  { // Corrected the operator() method
-       operate();
+       std::cout << "operate()" << std::endl;
    }
 };
 
