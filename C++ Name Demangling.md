@@ -16,7 +16,6 @@
 #include <memory>
 #include <utility>
 
-
 struct MyClass
 {
     std::vector<std::vector<std::list<std::pair<std::string,std::string>>>> m_data;
