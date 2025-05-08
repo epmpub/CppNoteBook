@@ -43,6 +43,25 @@ int main()
 
 
 
+// use coroutine
+
+```C++
+std::generator<int> fibonacci() {
+    int a = 0, b = 1;
+    while (true) {
+        co_yield std::exchange(a, std::exchange(b, a + b));
+    }
+}
+
+int answer_to_the_universe() {
+    auto rng = fibonacci() | std::views::drop(6) | std::views::take(3);
+    return std::ranges::fold_left(std::move(rng), 0, std::plus{});
+}
+
+```
+
+
+
 ```C++
 #include <cmath>
 #include <iostream>

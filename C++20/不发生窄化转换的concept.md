@@ -1,4 +1,4 @@
-# 不发生窄化转换的concept
+# 检测_发生窄化转换的concept
 
 您提供的代码定义了一个 C++20 概念（concept）ConvertsWithoutNarrowing，用于约束类型 From 到类型 To 的转换，确保该转换是**可转换的**且**不会发生窄化转换**（narrowing conversion）。下面是对代码的详细解释。
 

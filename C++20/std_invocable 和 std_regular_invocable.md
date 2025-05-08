@@ -8,7 +8,9 @@ std::invocable 和 std::regular_invocable 是 C++20 引入的两个标准库概�
 
 定义
 
-std::invocable<F, Args...> 是一个概念，约束一个可调用对象 F 是否可以以参数类型 Args... 进行调用。它只关心调用是否合法（即语法上有效），而不对调用的语义或返回值做额外要求。
+std::invocable<F, Args...> 是一个概念，约束一个可调用对象 F 是否可以以参数类型 Args... 进行调用。
+
+它只关心调用是否合法（即语法上有效），而不对调用的语义或返回值做额外要求。
 
 要求
 
@@ -58,7 +60,9 @@ int main() {
 
 定义
 
-std::regular_invocable<F, Args...> 是一个更严格的概念，是 std::invocable 的子概念。它不仅要求调用合法，还要求调用行为满足“正则”（regular）语义，即调用是纯函数式的，具有一致性和可预测性。
+std::regular_invocable<F, Args...> 是一个更严格的概念，是 std::invocable 的子概念。
+
+它不仅要求调用合法，还要求调用行为满足“正则”（regular）语义，即调用是**纯函数式**的，具有一致性和可预测性。
 
 要求
 
