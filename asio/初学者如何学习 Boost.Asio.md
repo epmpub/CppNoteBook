@@ -263,12 +263,8 @@
 - **书籍**：
   - 《Boost.Asio C++ Network Programming》（John Torjo）：适合初学者，讲解清晰。
   - 《The Boost C++ Libraries》（Boris Schäling）：免费电子书，包含 Asio 章节。
-- **在线教程**：
-  - [Boost.Asio Tutorial by Code Capsule](http://www.codecapsule.com/category/boost-asio/)：分步讲解。
-  - [Learn Boost.Asio](https://www.gamedev.net/tutorials/programming/networking-and-multiplayer/introduction-to-boostasio-r2986/)：游戏开发者的网络编程教程。
 - **视频教程**：
   - YouTube 搜索“Boost.Asio tutorial”或“Boost.Asio C++”。
-  - CppCon 或 BoostCon 会议视频（如 Vinnie Falco 的 Asio 讲座）。
 - **社区**：
   - Stack Overflow（标签：boost-asio）。
   - Boost 用户邮件列表或 Reddit 的 r/cpp。
@@ -286,16 +282,6 @@
   - 确保 io_context.run() 被调用，否则异步操作不会执行。
   - 注意对象生命周期（如 socket 在回调中必须保持有效）。
   - 异步编程中避免深层回调嵌套，优先考虑协程。
-- **循序渐进**：不要急于学习所有功能，先掌握 TCP 客户端/服务器，再扩展到 UDP、定时器等。
-
-------
-
-6. **学习时间规划**
-
-- **1-2 周**：掌握同步 I/O，完成简单的 TCP 客户端/服务器。
-- **2-4 周**：学习异步回调模式，理解事件循环。
-- **1-2 个月**：熟悉协程，完成一个小型项目（如聊天服务器）。
-- **3个月以上**：深入多线程、SSL 等高级主题，开发复杂应用。
 
 ------
 
@@ -309,12 +295,13 @@
 - **“如何调试异步程序？”**
   - 添加日志，检查 error_code，使用调试器观察回调执行。
 
-------
 
-8. **下一步**
 
-- 选择一个简单项目（如聊天服务器或文件传输工具）开始实践。
-- 阅读 Boost.Asio 官方文档的 [Daytime Protocol Tutorial](https://www.boost.org/doc/libs/release/libs/asio/doc/asio/tutorial/tutdaytime1.html)。
-- 加入 C++ 社区，分享你的代码，获取反馈。
+## 一些资源:
 
-如果你有具体的学习目标（例如实现某个功能）或需要某个示例代码，请告诉我，我可以为你提供更详细的指导！
+https://stackoverflow.com/search?q=user%3A85371+%5Bboost-asio%5D
+
+https://www.youtube.com/results?search_query=Chris+Kohlhoff+
+
+
+
