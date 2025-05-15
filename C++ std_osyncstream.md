@@ -6,6 +6,48 @@ C++20 引入了同步流。
 
 只要对该流的所有访问都是通过同步流进行的，就可以使用多个同步流写入单个目标流，而不会引入数据竞争或交错。
 
+```C++
+	std::vector<std::thread> threads;
+	std::mutex mtx; // Mutex for thread synchronization
+	for (size_t i = 0; i < 10; i++)
+	{
+		threads.push_back(std::thread([i, &mtx]() {
+			{
+				std::lock_guard<std::mutex> lock(mtx); // Lock the mutex
+				std::cout << "Thread " << i << " is executing.\n";
+			}
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Simulate work
+			{
+				std::lock_guard<std::mutex> lock(mtx); // Lock the mutex
+				std::cout << "Thread " << i << " has finished execution.\n";
+			}
+
+			}));
+	}
+
+	for (auto& thread : threads)
+	{
+		thread.join();
+	}
+	std::cout << "All threads have finished execution.\n";
+
+```
+
+
+
+```C++
+	std::vector<std::jthread> threads;
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		threads.emplace_back(std::jthread([i]() {
+			std::osyncstream(std::cout) << "Thread " << i << " is executing.\n";
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Simulate work
+			std::osyncstream(std::cout) << "Thread " << i << " has finished execution.\n";
+			}));
+	}
+```
+
 
 
 ```c++
