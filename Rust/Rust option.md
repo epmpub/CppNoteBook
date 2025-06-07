@@ -137,11 +137,14 @@ fn main() {
 
 ```
 
+(问号)
+
 **The question mark operator, ?**
 
 ```rust
 
-When writing code that calls many functions that return the Result type, the error handling can be tedious. The question mark operator, ?, hides some of the boilerplate of propagating errors up the call stack.
+When writing code that calls many functions that return the Result type, the error handling can be tedious. 
+The question mark operator, ?, hides some of the boilerplate of propagating errors up the call stack.
 
 It replaces this:
 
@@ -154,6 +157,7 @@ struct Info {
     age: i32,
     rating: i32,
 }
+
 
 fn write_info(info: &Info) -> io::Result<()> {
     // Early return on error
