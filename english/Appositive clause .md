@@ -12,6 +12,10 @@
 表语从句：Predicative clause
 同位语从句：Appositive clause
 
+------
+
+i
+
 1. 表语从句（Predicative clause）：
 
 - 表语从句位于系动词（如be, seem, look, become等）之后，用来说明主语的身份、特征或状态等。它起着解释主语是什么、怎么样的作用。
@@ -32,12 +36,10 @@ adverbial clause ”的意思是“状语从句” ,状语从句：根据其表�
 
 原因状语从句（Because it rained, we didn't go to the park. 因为下雨，我们没去公园。）等多种类型。
 
-
+------
 
 
 Appositive clause (同位语)
-
-
 
 An appositive clause is a type of clause that functions as an appositive, providing additional information about a noun or pronoun in a sentence. It typically renames, explains, or describes the noun it follows and is often introduced by a relative pronoun (e.g., that, who, which) or a subordinating conjunction. However, in modern grammar, what is often referred to as an "appositive clause" is typically a relative clause or a noun clause acting in an appositive role.Key Features of Appositive Clauses
 
