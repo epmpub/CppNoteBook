@@ -1,6 +1,10 @@
 # 自定义类型和容器中支持分配器感知
 
-这段代码展示了 C++ 中与内存分配器相关的特性，特别是 C++17 引入的 polymorphic memory resource（PMR，<memory_resource>）框架，以及如何在自定义类型和容器中支持分配器感知（allocator-aware）。代码还涉及异构查找（heterogeneous lookup）和分配器传播的细节。以下是对代码的逐步解释：
+这段代码展示了 C++ 中与内存分配器相关的特性，特别是 C++17 引入的 polymorphic memory resource（PMR，<memory_resource>）框架，
+
+以及如何在自定义类型和容器中支持分配器感知（allocator-aware）。
+
+代码还涉及异构查找（heterogeneous lookup）和分配器传播的细节。以下是对代码的逐步解释：
 
 
 

@@ -142,7 +142,9 @@ int main() {
 }
 ```
 
-这段代码展示了 C++ 中如何实现仅移动（move-only）类型的资源管理类，利用模板和 RAII（Resource Acquisition Is Initialization）管理如文件描述符和内存映射等系统资源。代码定义了一个通用的 MoveOnly 模板类，并通过特化和组合将其应用于 Unix 文件操作和内存映射文件管理。以下是对代码的详细解释：
+这段代码展示了 C++ 中如何实现仅移动（move-only）类型的资源管理类，利用模板和 RAII（Resource Acquisition Is Initialization）管理如文件描述符和内存映射等系统资源。
+
+代码定义了一个通用的 MoveOnly 模板类，并通过特化和组合将其应用于 Unix 文件操作和内存映射文件管理。以下是对代码的详细解释：
 
 ------
 

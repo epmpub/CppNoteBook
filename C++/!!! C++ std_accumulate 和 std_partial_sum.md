@@ -1,6 +1,8 @@
 # !!! C++ std::accumulate 和 std::partial_sum 
 
-这段代码展示了 C++ 标准库中 <numeric> 头文件提供的两个函数：std::accumulate 和 std::partial_sum，它们用于对序列进行累积计算（fold 操作）。代码还通过自定义操作和反向迭代展示了左折叠（left fold）和右折叠（right fold）的实现。以下是对代码的逐步解释：
+这段代码展示了 C++ 标准库中 <numeric> 头文件提供的两个函数：std::accumulate 和 std::partial_sum，它们用于对序列进行累积计算（fold 操作）。
+
+代码还通过自定义操作和反向迭代展示了左折叠（left fold）和右折叠（right fold）的实现。以下是对代码的逐步解释：
 
 ------
 
