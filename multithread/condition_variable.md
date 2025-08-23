@@ -11,7 +11,9 @@ std::jthread reader1([]() {
 
 
 
-在 cv.wait(lock, [] { return ready; }); 中，[] { return ready; } 是一个谓词（predicate），用于指定条件变量 std::condition_variable 的等待条件。
+在 cv.wait(lock, [] { return ready; }); 
+
+中，[] { return ready; } 是一个谓词（predicate），用于指定条件变量 std::condition_variable 的等待条件。
 
 以下是为什么需要 return ready 的详细解释：
 
