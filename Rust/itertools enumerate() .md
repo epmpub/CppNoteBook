@@ -35,3 +35,10 @@ for (index, value) in v.iter().enumerate() {
 
 因此，虽然 Vec 本身没有 enumerate() 方法，但通过迭代器链，你可以轻松使用 enumerate() 来遍历带索引的元素。
 
+
+
+## 总结:
+
+- 带 into_ 的方法（如 into_iter()）：通常会转移所有权，调用后原始值不可用。
+- 不带 into_ 的方法（如 iter()、iter_mut()）：只借用数据，原始值仍然可用。
+- 这是 Rust 所有权模型的核心设计，确保内存安全和高效。
