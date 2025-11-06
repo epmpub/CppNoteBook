@@ -1,8 +1,6 @@
 # Python subprocess 模块高级用法的详细指南
 
-专注于更复杂的场景和功能，比如管道、实时输出处理、异步执行、超时控制、环境变量管理等。我会保持内容简洁但全面，涵盖实际应用案例。如果你有具体的高级用案例子（例如特定的 Shell 命令、并发处理或错误调试），请告诉我，我可以进一步定制答案！
 
-subprocess 高级用法
 
 subprocess 模块是 Python 中运行外部命令的首选工具，提供了强大的灵活性。以下是高级用法的关键点和示例。
 
@@ -70,7 +68,7 @@ if error:
 
 **说明**：
 
-- poll() 检查进程是否结束（返回 None 表示仍在运行）。
+- poll() 检查进程是否结束（返回 None 表示仍在运行).
 - readline() 逐行读取输出，适合实时处理。
 - communicate() 确保捕获所有剩余输出。
 
@@ -172,6 +170,7 @@ result = subprocess.run(
     capture_output=True,
     text=True,
     env=env
+    # 传入了环境变量
 )
 print(result.stdout)
 ```
