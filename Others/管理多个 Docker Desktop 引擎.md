@@ -2,7 +2,7 @@
 
 ## 管理多个 Docker Desktop 引擎的方法
 
-### 1. **使用 Docker Context（2推荐方法）**
+### 1. **使用 Docker Context（3推荐方法）**
 
 Docker Context 允许你在多个 Docker 引擎之间切换：
 
