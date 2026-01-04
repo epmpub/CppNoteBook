@@ -40,12 +40,12 @@ Power Query M 语言示例：
 
 ```m
 let
-    Source = Excel.CurrentWorkbook(){[Name="InputTable"]}[Content],
-    Typed = Table.TransformColumnTypes(Source, {{"productCode", type text}, {"newPrice", type number}}),
+    Source = Excel.CurrentWorkbook(){[Name="newt"]}[Content],
+    Typed = Table.TransformColumnTypes(Source, {{"ProductCode", type text}, {"Price", type number}}),
     Records = Table.ToRecords(Typed),
     JsonBody = Json.FromValue(Records),
     Response = Web.Contents(
-        "https://localhost:5001/api/products/batch-update",
+        "http://localhost:5000/api/products/batch-update",
         [
             Headers=[#"Content-Type"="application/json"],
             Content=JsonBody
