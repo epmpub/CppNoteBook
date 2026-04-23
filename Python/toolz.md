@@ -17,3 +17,10 @@ Toolz functions are *pragmatic*. They understand that most programmers have dead
 This gives developers the power to write *powerful* programs to solve *complex problems* with relatively *simple code*. This code can be *easy to understand* without sacrificing *performance*. Toolz enables this approach, commonly associated with functional programming, within a natural Pythonic style suitable for most developers.
 
 BSD licensed source code is available at http://github.com/pytoolz/toolz/ .
+
+
+
+
+
+- [itertools](https://docs.python.org/3.13/library/itertools.html): The Python standard library for iterator tools
+- [functools](https://docs.python.org/3.13/library/functools.html): The Python standard library for function tools
