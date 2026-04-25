@@ -119,6 +119,14 @@ Start with [SG20 Education and Recommended Videos for Teaching C++](https://blog
 * [cmake_template](https://github.com/cpp-best-practices/cmake_template) - A template CMake project to get you started with C++ and tooling.
 * [Pitchfork](https://github.com/vector-of-bool/pitchfork) - Pitchfork is a Set of C++ Project Conventions.  
 
+
+
+
+
+------
+
+
+
 ## Libraries
 
 This is not supposed to be a comprehensive list of all C and C++
@@ -135,6 +143,8 @@ libraries with novel use of new C++ features.
 * [POCO](https://pocoproject.org/) - The POCO C++ Libraries are powerful cross-platform C++ libraries for building network- and internet-based applications that run on desktop, server, mobile, IoT, and embedded systems.
 * [nonstd-lite](https://github.com/martinmoene/nonstd-lite) - Parent of *-lite repositories, a migration path to post-C++11 features for pre-C++11 environments.
 * [xtd](https://github.com/gammasoft71/xtd) - Modern C++17/20 framework to create console (CLI), forms (GUI like WinForms) and tunit (unit tests like Microsoft Unit Testing Framework) applications on Windows, macOS, Linux, iOS and android.
+
+
 
 ### Testing
 
