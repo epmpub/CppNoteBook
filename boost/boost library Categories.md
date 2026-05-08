@@ -61,7 +61,7 @@ The Boost C++ Libraries are organized into several functional categories to help
 ### **Data Structures**
 
 - **Any:** Safe, generic container for single values of different types.
-- **Fusion:** Tools for working with tuples and heterogeneous sequences.
+- **Fusion:** Tools for working with tuples and heterogeneous [异构] sequences.
 - **Heap:** Priority queue data structures.
 - **JSON:** JSON parsing, serialization, and DOM tools.
 - **Optional:** A wrapper for representing nullable objects.
