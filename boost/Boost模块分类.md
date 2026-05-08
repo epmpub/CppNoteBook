@@ -23,13 +23,13 @@ The Boost C++ Libraries are organized into several functional categories to help
 - **Beast:** HTTP, WebSocket, and network operations built on Asio.
 - **Cobalt:** Basic coroutine algorithms and types.
 - **Compute:** A parallel and GPU-computing library.
-- **Context:** Context switching library (C++11).
+- **Context:** Context switching library (C++11).[Fiber底层机制]
 - **Coroutine / Coroutine2:** Specialized coroutine implementations.
 - **Fiber:** Userland [用户空间] threads library.
 - **Interprocess:** Shared memory, memory-mapped files, and process-shared mutexes. 
   - [如何让复杂 C++ 对象安全地跨进程存在与访问]
 - **Lockfree:** Specialized lockfree data structures.
-- **MPI:** Message Passing Interface for distributed-memory applications.
+- **MPI:** Message Passing Interface for distributed-memory applications.[HPC超算相关]
 - **MQTT5 / MySQL / Redis:** Specialized client libraries built on top of Asio.
 - **Thread:** Portable C++ multi-threading.
 
