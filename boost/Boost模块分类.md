@@ -22,7 +22,7 @@ The Boost C++ Libraries are organized into several functional categories to help
 - **Atomic:** C++11-style atomic types.
 - **Beast:** HTTP, WebSocket, and network operations built on Asio.
 - **Cobalt:** Basic coroutine algorithms and types.
-- **Compute:** A parallel and GPU-computing library.
+- **Compute:** A parallel and GPU-computing library. [类似HPC，但是不流行]
 - **Context:** Context switching library (C++11).[Fiber底层机制]
 - **Coroutine / Coroutine2:** Specialized coroutine implementations.
 - **Fiber:** Userland [用户空间] threads library.
