@@ -44,7 +44,7 @@ The Boost C++ Libraries are organized into several functional categories to help
 - **Intrusive:** High-performance intrusive containers and algorithms.
 - **Multi-Array:** Generic N-dimensional array implementations.
 - **Multi-Index:** Containers maintaining multiple indices with different semantics.
-- **Pointer Container:** Containers for heap-allocated polymorphic objects.
+- **Pointer Container:** Containers for heap-allocated polymorphic objects.[过时!!]
 - **Property Tree:** Tree structure for storing configuration data.
 - **Static String:** Fixed-capacity, dynamically sized strings.
 - **Unordered:** Unordered associative containers.
