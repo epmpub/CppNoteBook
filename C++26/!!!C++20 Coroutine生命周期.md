@@ -16,7 +16,9 @@ C++20 Coroutine 本身就有明确的生命周期（lifetime），而 std::execu
 - 帧的销毁时机由 Promise 的 final_suspend() 决定。通常是 std::suspend_always（需要外部显式销毁）或 std::suspend_never。
 - 关键：Coroutine 的局部变量生命周期绑定到协程帧，而不是普通的栈帧。这正是结构化并发的核心基础。
 
-如果不小心，Coroutine 很容易出现 dangling（悬挂引用）或提前销毁的问题 —— 这也是传统异步代码的常见 bug 源头。2. std::execution 如何与 Coroutine 深度集成？C++26 在 <execution> 中提供了两个关键工具：
+如果不小心，Coroutine 很容易出现 dangling（悬挂引用）或提前销毁的问题 —— 这也是传统异步代码的常见 bug 源头。
+
+2. std::execution 如何与 Coroutine 深度集成？C++26 在 <execution> 中提供了两个关键工具：
 
 - execution::with_awaitable_senders<Promise>：作为 coroutine promise_type 的基类，让所有 Sender 在该 coroutine 类型中都可以直接 co_await。
 - execution::as_awaitable(sender)：把 Sender 转换为 awaitable 对象。

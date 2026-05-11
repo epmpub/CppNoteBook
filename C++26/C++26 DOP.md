@@ -1,10 +1,10 @@
-C++ DOP
+#### C++ DOP
 
 Data-Oriented Programming / Data-Oriented Design，面向数据编程/设计）的支持非常强大。DOP 强调数据布局（尤其是 cache 友好、连续内存）、变换而非对象建模、SIMD 友好等，C++ 的“接近硬件”特性使其成为 DOP 的首选语言（Mike Acton 等人在游戏开发中大力推广）。 
 
-en.wikipedia.org
+以下是 C++（截至 C++26）中对 DOP 的核心支持特性，按类别列出：
 
-以下是 C++（截至 C++26）中对 DOP 的核心支持特性，按类别列出：1. 内存布局与连续存储（核心基础）
+1. 内存布局与连续存储（核心基础）
 
 - std::vector<T>：提供连续内存块，是 AoS（Array of Structures）和 SoA（Structure of Arrays）的基础。易于实现批量处理和 cache 优化。
 - std::array<T, N>：栈上或固定大小的连续数组。
@@ -15,10 +15,10 @@ en.wikipedia.org
 
 - 手动实现 SoA：使用多个并行 std::vector（每个字段一个数组），这是 DOP 最经典模式。
 - 自定义容器或库：如 SoA 辅助模板、ASX 库等，实现 AoS 接口 + SoA 底层布局。
-- alignas / alignof：精确控制结构体/数组对齐，优化 cache line 和 SIMD 加载。 thewolfsound.com
+- alignas / alignof：精确控制结构体/数组对齐，优化 cache line 和 SIMD 加载。
 - SIMD 与向量化支持
 
-- ** intrinsics**（SSE/AVX/NEON 等）：直接使用底层 SIMD 指令。
+- intrinsics（SSE/AVX/NEON 等）：直接使用底层 SIMD 指令。
 - C++26 <simd> 头文件：标准化的数据并行类型（std::simd），支持数据并行访问、bit 操作、chunk 处理等，极大简化 DOP 中的向量化代码。 cppreference.com
 - 编译器自动向量化：连续内存 + 简单循环时，编译器容易生成 SIMD 指令。
 - 内存管理与性能控制
@@ -47,7 +47,3 @@ DOP 在 C++ 中的典型实践
 - 减少指针追逐（pointer chasing）和间接调用。
 
 总结：C++ 本身就是 DOP 友好语言，不需要“特殊支持”就能高效实现（远超许多高级语言）。C++26 进一步通过 std::simd、std::execution、inplace_vector、hive 和反射等特性显著提升了 DOP 的生产力和性能。 
-
-flowrenderengine.com
-
-如果你需要具体代码示例（例如 SoA 实现、SIMD 循环、ECS 框架），或者针对某个特性的细节，请告诉我！

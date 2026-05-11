@@ -1,70 +1,595 @@
-std::execution（C++26）、协程（C++20 Coroutines）、std::async 和并行算法（Parallel Algorithms，如 std::execution::par） 是 C++ 中不同层次、不同模型的并发/异步工具。它们解决的问题有重叠，但设计目标、抽象层次和适用场景差异很大。 
+`C++26 std::execution`（P2300，通常称为 **Senders/Receivers**）可以看作：
 
-linkedin.com
+> C++ 标准库第一次正式把“异步执行模型”提升为一等公民。
 
-1. 核心概念对比
+它并不是简单的 coroutine 扩展，而是：
 
-| 特性           | std::execution (Sender/Receiver) std：：execution（发送/接收） | C++20 Coroutines C++20 协程               | std::async / std::future STD：：async / STD：：future | 并行算法 (std::execution::par)     |
-| -------------- | ------------------------------------------------------------ | ----------------------------------------- | ----------------------------------------------------- | ---------------------------------- |
-| 抽象层次       | 统一框架（基础构建块）                                       | 语法糖 + 控制流                           | 高层异步任务                                          | 数据并行（Data Parallel）          |
-| 模型           | Structured + Compositional Async 结构化 + 合成异步           | Cooperative Multitasking 协作式多任务处理 | Unstructured Async 非结构异步                         | Bulk Data Parallelism 批量数据并行 |
-| 主要解决的问题 | 统一所有异步/并发/并行，消除碎片化、生命周期问题、数据竞争   | 回调地狱、状态机复杂性                    | 简单异步启动，但问题多                                | 利用多核加速数据处理               |
-| 执行方式       | Lazy（惰性），可组合 Sender 链                               | 栈无/有，co_await                         | 立即启动（通常新线程）                                | 算法内部并行执行                   |
-| 线程/调度控制  | 优秀（Scheduler 灵活切换上下文）                             | 需手动 + Executor                         | 有限（实现定义）                                      | 受执行策略限制                     |
-| 组合性         | 极强（when_all、then、let_value 等）                         | 好（co_await 链）                         | 差（.then 实验性且有缺陷）                            | 中等（算法内）                     |
-| 内存/性能开销  | 极低（编译期多，无锁/分配常见）                              | 低（帧分配）                              | 中高（分配 + 同步）                                   | 低（取决于算法）                   |
-| 结构化并发     | 原生支持                                                     | 支持（需配合）                            | 不支持（容易 dangling）                               | 支持（但限于 bulk）                |
+- coroutine
+- thread pool
+- async IO
+- scheduler
+- pipeline
+- cancellation
+- structured async
 
-2. 各自解决的问题
+这些东西的统一抽象。
 
-- std::async + std::future/promise：
-  STD：：async + STD：：Future/promise：
-  - 解决简单异步启动的问题（“我想在另一个线程跑个任务”）。
-  - 问题：非结构化（unstructured concurrency）、容易出现生命周期错误（future 析构时阻塞或 dangling）、分配开销大、组合困难（.then 有 race 和性能问题）、线程池不可控、异常传播麻烦。 stackoverflow.com
-  - 适合：偶尔的一次性异步任务。
-- C++20 Coroutines（co_await / co_yield）：
-  C++20 协程（co_await / co_yield）：
-  - 解决异步代码写得像同步代码的问题（消除回调地狱、手动状态机）。
-  - 允许函数暂停/恢复，特别适合 I/O 密集型（网络、文件）。
-  - 局限：本身不提供调度器、执行上下文或组合原语。需要搭配自定义 Executor 或 event loop。生命周期管理和线程 hopping 仍需小心。 medium.com
-  - 适合：高并发 I/O、生成器、状态机。
-- 并行算法（<algorithm> + std::execution::par / par_unseq）：
-  并行算法（<algorithm> + std：：execution：:p ar / par_unseq））：
-  - 解决数据并行加速的问题（利用多核对大数组做相同操作）。
-  - 基于已有 STL 算法，简单高效。
-  - 局限：仅限 bulk 数据并行，不适合复杂异步工作流、I/O、不规则任务。
-- std::execution（Sender/Receiver，P2300）：
-  std：：execution（发送/接收，P2300）：
-  - C++26 最重要的并发统一框架。它提供可组合、可定制、无锁（常见情况）、结构化的异步模型。
-  - 核心概念：
-    - Scheduler：执行上下文（thread pool、GPU、单线程 loop 等）。
-    - Sender：描述异步工作（惰性，不启动直到 start()）。
-    - Receiver：接收结果（value / error / stopped 三通道）。
-    - Algorithms：then()、when_all()、let_value()、bulk()、on()、schedule() 等，用于构建工作流。
-      Algorithms：then（）、when_all（）、let_value（）、bulk（）、on（）、schedule（） 等，用于构建工作流。
-  - 解决的问题：
-    - 消除之前各种模型的碎片化（async、coroutine、parallel 无法无缝组合）。
-    - 结构化并发：严格的生命周期嵌套，减少数据竞争（data-race-free by construction）。
-    - 零开销组合（编译期决定很多行为）。
-    - 跨异构硬件（CPU + GPU + FPGA 等）。
-    - 与 Coroutines 深度集成（Sender 可 await，Coroutine 可转为 Sender）。 isocpp.org
-- 实际关系与推荐用法
+而很多能力，其实 Rust 生态（Tokio / async-await / Future）已经比较成熟。
 
-- std::execution 是“胶水”和基础：它可以驱动 Coroutines（提供默认 task 类型）、替换/增强 std::async、扩展并行算法。
-- 典型组合：
-  - 用 Coroutine 写业务逻辑（co_await）。
-  - 用 std::execution 控制调度、组合、并行（on(scheduler)、when_all、bulk）。
-- 性能与安全：std::execution 强调 Structured Concurrency，比传统 std::async + 裸线程更安全、更高效。 herbsutter.com
 
-总结推荐：
 
-- 简单任务 → 继续用 std::async。
-- I/O 重度、想写同步风格 → Coroutines。
-- 大数据并行加速 → Parallel Algorithms。
-- 复杂、高性能、可维护的现代异步系统 → std::execution + Coroutines（C++26 的黄金组合）。
+C++26 `std::execution` 主要是在补：
 
-std::execution 被誉为 C++ 在并发领域追赶 Rust/C# 等语言的重要一步，它不是简单替代，而是提供了更底层的统一词汇表。 
+| Rust 已有能力               | C++ 以前缺失的问题                   |
+| --------------------------- | ------------------------------------ |
+| async runtime               | C++ 没统一 runtime                   |
+| Future polling model        | C++ coroutine 只有语法，没有执行模型 |
+| async composition           | C++ async 很难组合                   |
+| structured concurrency      | C++ 缺统一任务树                     |
+| cancellation token          | C++ cancellation 很碎片化            |
+| scheduler abstraction       | C++ scheduler 五花八门               |
+| async pipeline              | C++ continuation 地狱                |
+| executor/runtime separation | C++ executor 标准化失败多年          |
 
-modernescpp.com
+P2300 本质上是：
 
-如果你需要具体代码示例（Sender 链、与 coroutine 配合、性能对比），或者某个部分的深入细节，随时告诉我！
+> 给 C++ coroutine 补“操作系统级”的异步生态。
+
+------
+
+# 1. C++20 coroutine 到底缺了什么？
+
+很多人误以为：
+
+> C++20 coroutine = Rust async/await
+
+其实只完成了：
+
+- suspend/resume 语法
+- 状态机生成
+- co_await 机制
+
+仅仅是：
+
+> “编译器级 coroutine lowering”
+
+并没有：
+
+- scheduler
+- runtime
+- event loop
+- task model
+- cancellation
+- structured async
+- async combinator
+
+所以：
+
+```cpp
+co_await xxx;
+```
+
+到底：
+
+- 谁恢复？
+- 在哪个线程恢复？
+- 怎样取消？
+- 怎么组合多个 task？
+- 怎么超时？
+- 怎么切 scheduler？
+
+标准库完全没定义。
+
+这就是：
+
+> “只有 coroutine syntax，没有 async model”
+
+------
+
+# 2. Rust 已经具备的完整 async 模型
+
+Rust：
+
+```rust
+async fn foo() {}
+```
+
+背后其实包含：
+
+------
+
+## (1) Future trait
+
+核心：
+
+```rust
+trait Future {
+    fn poll(...)
+}
+```
+
+这定义了：
+
+- 挂起
+- 恢复
+- readiness
+- lazy execution
+
+C++20 coroutine 没有统一 poll model。
+
+------
+
+## (2) Runtime
+
+Rust 有：
+
+- Tokio
+- async-std
+- smol
+
+提供：
+
+- IO reactor
+- scheduler
+- timers
+- cancellation
+- task spawning
+
+而 C++：
+
+- Asio
+- Folly
+- libunifex
+- cppcoro
+- HPX
+
+全部碎片化。
+
+------
+
+## (3) Structured async
+
+Rust：
+
+```rust
+tokio::join!
+tokio::select!
+```
+
+天然支持：
+
+- fan-out
+- fan-in
+- racing
+- cancellation propagation
+
+而 C++20：
+
+几乎全靠手写。
+
+------
+
+## 3. std::execution（P2300）补了什么？
+
+核心思想：
+
+------
+
+“把 async operation 变成可组合的数据流”
+
+即：
+
+```cpp
+sender
+```
+
+表示：
+
+> “未来会产生结果的 computation”
+
+类似：
+
+Rust Future。
+
+------
+
+## 4. sender ≈ Rust Future
+
+Rust：
+
+```rust
+Future<Output=T>
+```
+
+C++26：
+
+```cpp
+sender<T>
+```
+
+但 sender 更泛化：
+
+它还能表达：
+
+- value
+- error
+- stopped(cancelled)
+
+三通道模型。
+
+------
+
+## 5. receiver ≈ continuation
+
+receiver：
+
+```cpp
+set_value()
+set_error()
+set_stopped()
+```
+
+相当于：
+
+Rust Future poll 完成后的 continuation。
+
+这解决：
+
+> continuation 如何统一表达
+
+------
+
+# 6. scheduler abstraction（重大补齐）
+
+这是 C++ 长期缺失的。
+
+Rust runtime：
+
+```rust
+tokio::spawn()
+```
+
+默认绑定 Tokio scheduler。
+
+------
+
+C++26：
+
+```cpp
+schedule(scheduler)
+```
+
+scheduler 成为标准概念。
+
+意味着：
+
+- thread pool
+- io_uring
+- GPU queue
+- NUMA scheduler
+
+都能统一接入。
+
+这是巨大的架构升级。
+
+------
+
+## 7. async pipeline（最核心）
+
+以前 C++ async：
+
+```cpp
+future.then(...).then(...)
+```
+
+非常碎。
+
+P2300：
+
+```cpp
+read_file()
+| then(parse)
+| then(compute)
+| then(write)
+```
+
+形成：
+
+> 声明式 async pipeline
+
+这非常像：
+
+Rust：
+
+```rust
+stream.map().filter()
+```
+
+或者：
+
+```rust
+async pipeline
+```
+
+------
+
+# 8. completion channels（Rust 没那么显式）
+
+P2300 有三个 completion signal：
+
+```cpp
+set_value
+set_error
+set_stopped
+```
+
+这比 Rust Future 更强。
+
+Rust cancellation：
+
+通常：
+
+```rust
+Result<T,E>
+```
+
+或者 runtime 特殊机制。
+
+而 P2300：
+
+把 cancellation 提升为：
+
+> 一等 completion state。
+
+这是非常现代的设计。
+
+------
+
+## 9. cancellation propagation
+
+以前 C++：
+
+- stop_token
+- atomic flag
+- future cancel
+
+全是碎片。
+
+P2300：
+
+取消成为 execution graph 的组成部分。
+
+类似：
+
+Rust Tokio task tree cancellation。
+
+------
+
+## 10. Structured Concurrency（补齐重大缺口）
+
+这是现代 async 最重要的东西之一。
+
+Rust Tokio：
+
+```rust
+join!
+select!
+```
+
+任务生命周期形成树。
+
+------
+
+以前 C++：
+
+```cpp
+std::thread.detach()
+```
+
+灾难级设计。
+
+因为：
+
+- orphan task
+- 生命周期失控
+- resource leak
+
+------
+
+P2300：
+
+开始进入：
+
+> structured async world
+
+即：
+
+- 父任务管理子任务
+- cancellation 自动传播
+- scope-based lifetime
+
+这其实是：
+
+Rust async 思想正式进入 C++ 标准。
+
+------
+
+## 11. Executor 失败 → execution 成功
+
+C++ 曾经试图标准化：
+
+```cpp
+executor
+```
+
+但失败多年。
+
+原因：
+
+不同 runtime 模型差异巨大：
+
+- CPU thread pool
+- GPU
+- networking
+- SIMD
+- bulk execution
+
+无法统一。
+
+------
+
+P2300 改变思路：
+
+不标准化 executor API。
+
+而标准化：
+
+## “异步 computation graph”
+
+这是重大思想转变。
+
+------
+
+## 12. Rust 和 C++26 的根本差异
+
+虽然越来越像。
+
+但本质不同：
+
+------
+
+## Rust async
+
+核心：
+
+> runtime-driven
+
+Future 必须 poll。
+
+本质：
+
+```text
+runtime owns execution
+```
+
+------
+
+## C++26 execution
+
+核心：
+
+> generic execution graph
+
+更强调：
+
+- composability
+- scheduler abstraction
+- heterogeneous execution
+
+甚至：
+
+- GPU
+- SIMD
+- HPC
+
+这是 C++ 的传统优势。
+
+------
+
+## 13. C++26 甚至比 Rust 更泛化
+
+Rust async 主要针对：
+
+- networking
+- server async IO
+
+------
+
+P2300 目标：
+
+统一：
+
+- CPU task graph
+- GPU execution
+- sender pipeline
+- vectorized execution
+- bulk execution
+- NUMA execution
+
+它其实更接近：
+
+- Intel TBB flow graph
+- HPX
+- SYCL
+- CUDA graph
+
+------
+
+## 14. 为什么说 P2300 是 C++ 近十年最重要标准之一
+
+因为它第一次真正统一了：
+
+| 能力              | 之前       |
+| ----------------- | ---------- |
+| coroutine         | 只有语法   |
+| async             | 碎片化     |
+| executor          | 标准化失败 |
+| scheduler         | 无统一     |
+| continuation      | 无统一     |
+| cancellation      | 混乱       |
+| async composition | 极弱       |
+
+P2300：
+
+第一次把：
+
+> “现代异步系统编程模型”
+
+正式放进 ISO C++。
+
+------
+
+## 15. 最终对比总结
+
+| 能力                     | Rust async         | C++20 | C++26 execution |
+| ------------------------ | ------------------ | ----- | --------------- |
+| coroutine syntax         | ✅                  | ✅     | ✅               |
+| runtime model            | ✅                  | ❌     | ✅               |
+| scheduler abstraction    | ⚠ runtime-specific | ❌     | ✅               |
+| async composition        | ✅                  | ❌     | ✅               |
+| structured concurrency   | ✅                  | ❌     | ✅               |
+| cancellation propagation | ✅                  | ❌     | ✅               |
+| execution graph          | ⚠ 部分             | ❌     | ✅               |
+| heterogeneous execution  | ❌                  | ❌     | ✅ 强项          |
+| GPU/NUMA integration     | 弱                 | 弱    | 强              |
+| async pipeline           | ✅                  | 弱    | ✅               |
+
+------
+
+## 可以这样理解
+
+## Rust async：
+
+更像：
+
+> “现代服务器 async runtime”
+
+------
+
+C++26 execution：
+
+更像：
+
+> “统一整个异构计算世界的 execution framework”
+
+包括：
+
+- async IO
+- HPC
+- GPU
+- SIMD
+- pipelines
+- task graph
+- bulk execution
+
+这是它真正野心所在。
