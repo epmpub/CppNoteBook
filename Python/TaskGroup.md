@@ -1,11 +1,5 @@
 # TaskGroup
 
-
-
-![image-20250518085210252](C:\Users\sheng\AppData\Roaming\Typora\typora-user-images\image-20250518085210252.png)
-
-
-
 ```python
 async def main():
     async with asyncio.TaskGroup() as tg:
