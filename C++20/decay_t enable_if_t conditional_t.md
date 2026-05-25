@@ -15,6 +15,7 @@
 ```cpp
 #include <type_traits>
 #include <string>
+#include <iostream>
 
 template<typename T>
 void show_decay()
@@ -30,7 +31,7 @@ int main()
     show_decay<const std::string&>();      // const string& -> string
     show_decay<int[10]>();                 // int[10]       -> int*
     show_decay<void(int)>();               // void(int)     -> void(*)(int)
-    show_decay<const int[5]&>();           // const int[5]& -> int*
+    show_decay<const int[5]>();           // const int[5] -> int const *
 }
 ```
 
@@ -144,6 +145,3 @@ struct OptimizedStorage
 - `std::enable_if` 正在被 **Concepts** 大量替代（更清晰）
 - 但 `decay_t` 和 `conditional_t` 依然非常常用
 
----
-
-需要我给你**综合实战例子**（把三个一起用），还是分别深入某个的更多用法？
