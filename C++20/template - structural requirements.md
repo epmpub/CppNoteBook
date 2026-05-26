@@ -51,7 +51,6 @@ void print_message()
 int main()
 {
     print_message<"Hello, C++20 NTTP!">();
-
     constexpr fixed_string msg = "Template String";
     print_message<msg>();
 }
