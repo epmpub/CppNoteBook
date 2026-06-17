@@ -33,7 +33,7 @@
 
 ## 基本用法
 
-```
+```c
 #include <functional>
 
 void invoke(std::function_ref<void(int)> f) {
@@ -81,7 +81,7 @@ std::function_ref<void()> bad_idea() {
 
 大多数实现会存储两个指针：
 
-```
+```c
 struct function_ref<R(Args...)> {
     void*   ctx;          // 上下文/闭包指针
     R(*call)(void*, Args...);  // 指向静态的擦除函数的指针
@@ -97,7 +97,7 @@ struct function_ref<R(Args...)> {
 
 1. **API 参数**：替代模板参数，避免编译时膨胀
 
-   ```
+   ```c++
    // 之前：模板化了整个函数
    template<typename F>
    void for_each(F f);
@@ -108,7 +108,7 @@ struct function_ref<R(Args...)> {
 
 2. **回调参数**：避免 `std::function` 的开销
 
-   ```
+   ```c++
    using Callback = std::function_ref<void(Event const&)>;
    class Widget {
        Callback on_click_;
