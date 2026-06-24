@@ -1,5 +1,3 @@
-
-
 相等运算符的约束（Constraining equality operators） 是对 C++23 std::expected 的一个重要改进，由提案 P3379R0 引入。 
 
 open-std.org
