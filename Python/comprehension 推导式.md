@@ -42,10 +42,11 @@ python
 ```
 
 >>> 语法
+>>>
 >>> 我们看看compresion的语法如下：
 >>> new_list = [expresion_for_member for member in iterable if condition]
->>>
->>> 
+>
+>
 
 1.expresion_for_member是表达式。
 

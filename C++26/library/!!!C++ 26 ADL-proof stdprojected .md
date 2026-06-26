@@ -1,0 +1,1 @@
+ADL-proof [`std::projected`](https://en.cppreference.com/cpp/iterator/projected)
