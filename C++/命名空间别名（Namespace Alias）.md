@@ -41,58 +41,39 @@ int main()
 #### 1. Namespace Alias（C++98）
 
 ```cpp
+//给命名空间起别名。
 namespace rng = std::ranges;
 ```
-
-给命名空间起别名。
-
-------
 
 #### 2. Using Declaration（C++98）
 
 ```cpp
+//把某个名字引入当前作用域。
 using std::cout;
 using std::ranges::find;
 ```
 
-把某个名字引入当前作用域。
-
-------
-
 #### 3. Using Directive（C++98）
 
 ```cpp
+//把整个命名空间中的名字引入当前作用域。
 using namespace std;
 ```
-
-把整个命名空间中的名字引入当前作用域。
-
-------
 
 #### 4. Type Alias（C++11）
 
 ```cpp
 using StringVec = std::vector<std::string>;
+//等价于：typedef std::vector<std::string> StringVec; 但语法更现代。
 ```
-
-等价于：
-
-```cpp
-typedef std::vector<std::string> StringVec;
-```
-
-但语法更现代。
-
-------
 
 #### 5. Alias Template（C++11）
 
 ```cpp
 template<typename T>
 using Vec = std::vector<T>;
+//这是 `typedef` 做不到的。
 ```
-
-这是 `typedef` 做不到的。
 
 例如：
 
