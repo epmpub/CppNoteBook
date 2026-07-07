@@ -4,7 +4,7 @@
 
 例如：
 
-```qml
+```q
 RowLayout {
     anchors.fill: parent
 
