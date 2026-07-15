@@ -25,14 +25,14 @@ Rectangle {
 
 Qt 提供了多种属性动画：
 
-| 动画                  | 用途              |
-| --------------------- | ----------------- |
-| `PropertyAnimation`   | 通用属性动画      |
-| `NumberAnimation`     | 数值（int、real） |
-| `ColorAnimation`      | 颜色              |
-| `RotationAnimation`   | 旋转              |
-| `Vector3dAnimation`   | 三维向量          |
-| `QuaternionAnimation` | 四元数            |
+| 动画                  | 用途                 |
+| --------------------- | -------------------- |
+| `PropertyAnimation`   | 通用属性动画         |
+| `NumberAnimation`     | 数值（int、real）+ 1 |
+| `ColorAnimation`      | 颜色 + 1             |
+| `RotationAnimation`   | 旋转                 |
+| `Vector3dAnimation`   | 三维向量             |
+| `QuaternionAnimation` | 四元数               |
 
 例如：
 
