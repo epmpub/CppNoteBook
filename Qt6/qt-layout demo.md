@@ -2,6 +2,6 @@
 
 anchor examples
 
-![](C:\Users\sheng\CppNoteBook\anchor-1.jpg)
+![](images\anchor-1.jpg)
 
-![](C:\Users\sheng\CppNoteBook\anchor-2.jpg)
+![](images\anchor-2.jpg)
