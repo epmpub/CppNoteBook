@@ -104,7 +104,7 @@ vcpkg list | grep "1.90.0#1" | awk '{print $1}' | xargs -r vcpkg remove --recurs
 如果是在 Windows：
 
 ```powershell
-vcpkg list | Select-String "1.88.0" | ForEach-Object {
+vcpkg list | Select-String "1.90.0#1" | ForEach-Object {
     vcpkg remove (($_ -split "\s+")[0]) --recurse
 }
 ```
