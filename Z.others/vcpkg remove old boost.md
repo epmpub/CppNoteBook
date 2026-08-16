@@ -74,7 +74,7 @@ boost-thread:x64-linux      1.90.0#1
 Linux / WSL：
 
 ```bash
-vcpkg list | grep "1.90.0#1" | awk '{print $1}' | xargs -r vcpkg remove
+vcpkg list | grep "1.90.0#1" | awk '{print $1}' | xargs -r vcpkg remove --recurse
 ```
 
 说明：
